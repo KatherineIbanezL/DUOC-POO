@@ -1,2 +1,2 @@
-Mensaje: Hola, Código Primo: 17
-Mensaje: Clave, Código Primo: 43
+Mensaje: Hola, Código Primo: 71
+Mensaje: Clave, Código Primo: 23

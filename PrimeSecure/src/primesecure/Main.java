@@ -32,9 +32,9 @@ public class Main {
         // Guardar mensajes simulados
         List<String> mensajes = List.of("Hola", "Clave", "Acceso");
         List<Integer> codigos = primesList.subList(0, Math.min(mensajes.size(), primesList.size()));
-        Archivos.mensajesEncriptados(mensajes, primesList, "mensajes_codificados.txt");
+        Archivos.mensajesEncriptados(mensajes, codigos, "mensajes_codificados.txt");
 
         //conteo final
-        System.out.println("Total de códigos primos registrados: " + primesList.getPrimesCount());
+        System.out.println("Total de números primos registrados: " + primesList.getPrimesCount());
     }
 }
