@@ -4,13 +4,14 @@
  */
 package ui;
 
+import archivos.DataVehiculos;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
 import gestion.FlotaVehiculos;
 import tipo.CalculoBoleta;
 import tipo.Carga;
 import tipo.Pasajeros;
+import tipo.Vehiculo;
 
 public class InterfazGrafica extends JFrame {
     private final FlotaVehiculos gestor;
@@ -85,17 +86,21 @@ public class InterfazGrafica extends JFrame {
                 // Crear vehículo según tipo
                 Runnable tareaAgregar = () -> {
                 try {
-                        boolean agregado;
+                        Vehiculo nuevo;
                         if ("Carga".equals(tipo)) {
-                            agregado = gestor.agregarVehiculo(new Carga(patente, marca, dias, capacidad));
+                            nuevo = new Carga(patente, marca, dias, capacidad);
                         } else {
-                            agregado = gestor.agregarVehiculo(new Pasajeros(patente, marca, dias, (int) capacidad));
+                            nuevo = new Pasajeros(patente, marca, dias, (int) capacidad);
                         }
 
-                        boolean finalAgregado = agregado;
+                        boolean agregado = gestor.agregarVehiculo(nuevo);
 
+                        if (agregado) {
+                            // Guardar lista actualizada en archivo
+                            DataVehiculos.guardar("vehiculos.dat", gestor.getVehiculos());
+                        }
                         SwingUtilities.invokeLater(() -> {
-                            if (finalAgregado) {
+                            if (agregado) {
                                 resultadoArea.setText("Vehículo agregado exitosamente.\n");
                             } else {
                                 resultadoArea.setText("Error: la patente ya se encuentra registrada.\n");
@@ -141,6 +146,13 @@ public class InterfazGrafica extends JFrame {
 
     public static void main(String[] args) {
         FlotaVehiculos gestor = new FlotaVehiculos();
+        // Cargar los datos guardados previamente
+        java.util.List<Vehiculo> vehiculosCargados = DataVehiculos.cargar("vehiculos.dat");
+        for (Vehiculo v : vehiculosCargados) {
+            gestor.agregarVehiculo(v);
+        }
+
+        // Mostrar la interfaz gráfica
         SwingUtilities.invokeLater(() -> new InterfazGrafica(gestor).setVisible(true));
     }
 }

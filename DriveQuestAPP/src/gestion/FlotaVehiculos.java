@@ -15,7 +15,7 @@ public class FlotaVehiculos {
 
     public synchronized boolean agregarVehiculo(Vehiculo v) {
         String patenteNormalizada = v.getPatente().toLowerCase();
-        if (patentes.contains(v.getPatente())) {
+        if (patentes.contains(patenteNormalizada)) {
             System.out.println("Error: Patente duplicada.");
             return false;
         }

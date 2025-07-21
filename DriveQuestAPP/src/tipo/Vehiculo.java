@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package tipo;
+import java.io.Serializable;
 
-
-public abstract class Vehiculo {
+public abstract class Vehiculo implements Serializable{
     protected String patente;  
     protected String marca;  
     protected int diasArriendo;

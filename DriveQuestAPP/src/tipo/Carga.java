@@ -4,13 +4,10 @@
  */
 package tipo;
 
-import javax.swing.JOptionPane;
+import java.io.Serializable;
 
-/**
- *
- * @author Katherine
- */
-public class Carga extends Vehiculo implements CalculoBoleta {
+
+public class Carga extends Vehiculo implements Serializable, CalculoBoleta {
     private double capacidadCarga;
 
     public Carga() {}

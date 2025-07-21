@@ -4,9 +4,10 @@
  */
 package tipo;
 
-import javax.swing.JOptionPane;
+import java.io.Serializable;
 
-public class Pasajeros extends Vehiculo implements CalculoBoleta {
+
+public class Pasajeros extends Vehiculo implements Serializable, CalculoBoleta {
     private int cantidadPasajeros;
 
     public Pasajeros() {}
